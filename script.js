@@ -62,3 +62,18 @@ function createTodoItem(todo, todoindex){
     return todoLi;
 }
 
+function deleteTodoItem(todoindex){
+    allTodos = allTodos.filter((_, i) => i !== todoindex);
+    saveTodos();
+    updateTodoList();
+}
+
+function saveTodos(){
+    const todosJson = JSON.stringify(allTodos);
+    localStorage.setItem("todos" , todosJson)
+}
+
+function getTodos(){
+    const todos = localStorage.getItem("todos") || "[]"
+    return JSON.parse(todos);
+}
